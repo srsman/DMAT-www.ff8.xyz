@@ -5,6 +5,17 @@ import csv
 from pyquery import PyQuery as pq
 import os
 
+def get_file_magnet_link_test(id):  ##查找方式:PyQuery
+    import re
+    import requests
+    from pyquery import PyQuery as pq
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
+    web = requests.get('https://m.zhongziso.com/list/' + id + '/1', headers=headers)
+    doc = pq(web.text)
+    a = doc('.down a')
+    return a.attr('href')
+
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
 
 print("Number Geter By:rockstar99")
@@ -12,7 +23,7 @@ inputurl = input("Please enter URL here https://:")
 filess = input("Please enter the path of file.Example:C:/aaa.csv:")
 page = input("Please enter the number of pages to be grabbed:")
 
-handleurl = re.search(re.compile('www.jpjp.xyz/tag-vod-wd-\S+-p-',re.S),inputurl)
+handleurl = re.search(re.compile('www.ff8.xyz/tag-vod-wd-\S+-p-',re.S),inputurl)
 
 print("=========================================================================")
 print("The number of movies:", 40*int(page),"\nThere are 40 movies on each page.")
